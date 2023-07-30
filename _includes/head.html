@@ -20,11 +20,6 @@
 
     <meta name="description" content="{% if page.description %}{{page.description | strip_html}}{% elsif pagecontent_description.size > 10 %}{{ pagecontent_description }}{% else %}{{ site.description }}{% endif %}">
 
-    <link rel="apple-touch-icon" sizes="180x180" href="{{ '/assets/images/icons/apple-touch-icon.png' | absolute_url }}">
-    <link rel="icon" type="image/png" sizes="32x32" href="{{ '/assets/images/icons/favicon-32x32.png' | absolute_url }}">
-    <link rel="icon" type="image/png" sizes="16x16" href="{{ '/assets/images/icons/favicon-16x16.png' | absolute_url }}">
-    <link rel="manifest" href="{{ '/assets/images/icons/site.webmanifest' | absolute_url }}">
-
     <!-- Facebook and Twitter integration -->
     <meta property="og:title" content="{{ page.title }}"/>
     {% if page.image %}<meta property="og:image" content="{{ page.image | absolute_url }}"/>
