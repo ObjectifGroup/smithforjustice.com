@@ -1,0 +1,30 @@
+<!-- Footer -->
+<footer class="footer py-3 bg-primary text-white text-base">
+  <div class="container">
+    <div class="row">
+      <div class="col-md-12">
+        <div class="mt-8">
+          <ul class="list-inline">
+            {% for item in site.data.navbar %}
+              <li class="list-inline-item">
+                <a class="nav-link" href="{{ item.href | absolute_url }}">{{ item.name }}</a>
+              </li>
+            {% endfor %}
+          </ul>
+          <p class="small">Political advertising paid for by the Edward Smith Campaign in compliance with the voluntary limits of the Judicial Campaign Fairness Act.</p>
+          <ul class="list-inline">
+            <li class="list-inline-item">Copyright &copy; {{ 'now' | date: "%Y" }}
+              {{ site.title }}
+            </li>
+            <li class="list-inline-item">
+              <a href="{{ '/privacy-policy/' | absolute_url }}" class="text-reset">Privacy Policy </a>
+            </li>
+            <li class="list-inline-item">
+              <a href="{{ '/terms-of-service/' | absolute_url }}" class="text-reset">Terms of Service</a>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+</footer>

@@ -1,0 +1,4 @@
+User-agent: *
+Disallow: /privacy-policy/
+Disallow: /terms-of-service/
+Sitemap: https://smithforjustice.com/sitemap.xml

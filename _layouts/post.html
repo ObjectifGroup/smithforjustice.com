@@ -1,0 +1,32 @@
+---
+layout: default
+---
+
+<div class="py-12">
+  <div class="container">
+    <div class="row justify-content-center">
+      <div class="col-lg-8 col-md-12 col-12">
+
+        {% include breadcrumbs.html %}
+
+        {{ content }}
+
+        <hr>
+
+        <div class="d-flex justify-content-between">
+
+          {% if page.previous.url %}
+            <a class="btn btn-primary float-left" href="{{ page.previous.url | absolute_url }}" data-bs-toggle="tooltip" data-bs-placement="top" title="{{ page.previous.title }}">&larr; Previous<span class="d-none d-md-inline">
+              Post</span></a>
+          {% endif %}
+          {% if page.next.url %}
+            <a class="btn btn-primary float-right" href="{{ page.next.url | absolute_url }}" data-bs-toggle="tooltip" data-bs-placement="top" title="{{ page.next.title }}">Next<span class="d-none d-md-inline">
+              Post</span> &rarr;</a>
+          {% endif %}
+
+        </div>
+
+      </div>
+    </div>
+  </div>
+</div>

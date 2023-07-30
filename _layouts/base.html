@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+
+<html lang="en">
+
+    {% include head.html %}
+
+    <body>
+
+        {{ content }}
+
+        {% include schema.html %}
+
+        {% if jekyll.environment == "production" %}
+            {% include google-analytics.html %}
+        {% endif %}
+
+        {% include about-the-campaign.html %}
+
+    </body>
+
+</html>

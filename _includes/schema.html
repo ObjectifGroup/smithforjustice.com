@@ -1,0 +1,134 @@
+{% if page.date %}
+    {% assign og_type = "article" %}
+{% else %}
+    {% assign og_type = "website" %}
+{% endif %}
+
+<script type="application/ld+json">
+    {% if site.schema_type == "Organization" %}
+        {
+            "@context": "https://schema.org",
+            "@type": "Organization",
+            "address": {
+                "@type": "PostalAddress",
+                "addressLocality": "{{ site.addressLocality }}",
+                "postalCode": "{{ site.postalCode }}",
+                "streetAddress": "{{ site.streetAddress }}"
+            },
+            "email": "{{ site.email }}",
+            "faxNumber": "{{ site.faxNumber }}",
+            "name": "{{ site.name }}",
+            "telephone": "{{ site.telephone }}"
+        }
+        {% elsif site.schema_type == "Person" %}
+        {
+            "@context": "https://schema.org",
+            "@graph": [
+                {
+                    "@type": "Person",
+                    "@id": "{{ site.url }}/#person",
+                    "name": "{{ site.author.name }}",
+                    "alternateName": "{{ site.author.alternate_name }}",
+                    "url": "{{ site.url }}",
+                    "nationality": "{{ site.author.nationality }}",
+                    "birthPlace": {
+                        "@type": "Place",
+                        "address": {
+                            "@type": "PostalAddress",
+                            "addressLocality": "{{ site.author.birth_place.locality }}",
+                            "addressRegion": "{{ site.author.birth_place.region }}",
+                            "addressCountry": "{{ site.author.birth_place.country }}"
+                        }
+                    },
+                    "alumniOf": [
+                        {
+                            "@type": "CollegeOrUniversity",
+                            "name": "{{ site.author.alumni.name }}",
+                            "sameAs": "{{ site.author.alumni.url }}"
+                        }
+                    ],
+                    "gender": "{{ site.author.gender }}",
+                    "description": "{{ site.author.description }}",
+                    "disambiguatingDescription": "{{ site.author.disambiguating_description }}",
+                    "jobTitle": "{{ site.author.job_title }}",
+                    "worksFor": [
+                        {
+                            "@type": "Organization",
+                            "name": "{{ site.author.works_for.name }}",
+                            "sameAs": [{% for social_link in site.author.works_for.social_links %}
+                                    "{{ social_link }}"{% unless forloop.last %},{% endunless %}
+                                {% endfor %}]
+                        }
+                    ],
+                    "image": "{{ site.author.image }}",
+                    "address": {
+                        "@type": "PostalAddress",
+                        "addressLocality": "{{ site.author.address.locality }}",
+                        "addressRegion": "{{ site.author.address.region }}",
+                        "addressCountry": "{{ site.author.address.country }}"
+                    },
+                    "sameAs": [{% for social_link in site.author.social_links %}
+                            "{{ social_link }}"{% unless forloop.last %},{% endunless %}
+                        {% endfor %}]
+                }
+            ]
+        }
+    {% endif %}
+    {% if og_type == "article" %}
+        {
+            "@type": "Article",
+            "headline": "{{ page.title }}",
+            {% if page.description %}
+                "alternativeHeadline": "{{ page.description | strip_html}}",
+            {% endif %}
+            "image": {
+                "@type": "ImageObject",
+                "url": "{{ page.image | default: site.og_image }}"
+            },
+            {% if page.author %}
+                {% assign author = site.authors | where: 'short_name', page.author | first %}
+                "author": "{{ author.name }}",
+            {% endif %}
+            "editor": "{{ site.author.name }}",
+            "keywords": "{% if page.categories %}{{ page.categories }}{% endif %} {% if page.tags %}{{ page.tags }}{% endif %}",
+            "wordcount": "{{ page.content | number_of_words }}",
+            "publisher": {
+                "@type": "Organization",
+                "@id": "{{ site.url }}#organization",
+                "name": "{{ site.title }}",
+                "logo": {
+                    "@type": "ImageObject",
+                    "url": "{{ site.favicon }}"
+                }
+            },
+            "url": "{{ page.url }}",
+            "mainEntityOfPage": {
+                "@type": "WebPage",
+                "@id": "{{ page.canonical_url }}"
+            },
+            "datePublished": "{{ page.date | date_to_xmlschema }}",
+            "dateCreated": "{{ page.date | date_to_xmlschema }}",
+            "dateModified": "{{ page.last_modified_at | default: page.date | date_to_xmlschema }}",
+            "description": "{{ page.description | strip_html }}",
+            "inLanguage": "us-EN"
+        }
+    {% endif %}
+    {
+        "@type": "WebPage",
+        "name": "{{ site.title }}",
+        "description": "{{ site.description }}",
+        "publisher": {
+            "@type": "ProfilePage",
+            "name": "{{ site.title }}"
+        },
+        "inLanguage": "us-EN",
+        "primaryImageOfPage": {
+            "@type": "ImageObject",
+            "url": "{{ page.image | default: site.og_image }}"
+        },
+        "url": "{{ canonical_url }}",
+        "author": {
+            "@id": "{{ site.url }}/authors/{{ site.author.short_name }}"
+        }
+    }
+</script>

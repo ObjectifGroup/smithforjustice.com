@@ -1,0 +1,130 @@
+---
+title: Justice Edward Smith
+description: Texas 3rd Court of Appeals, Place 2
+image: "/assets/images/edward-smith-family-photo.jpg"
+
+---
+
+<section id="swiper-content" class="pt-lg-14 pb-lg-12 py-8 bg-primary">
+    <div class="container">
+        <div class="row">
+            <div class="offset-xl-3 col-xl-6 col-md-12 col-12">
+                <div class="mb-8 text-center">
+                    <h2 class="mb-3 h1">This is title text</h2>
+                    <p class="lead">This is subtitle text</p>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="container-lg px-0">
+        <link href="{{ 'swiper-bundle.min.css' | prepend: '/assets/css/' | absolute_url }}" rel="stylesheet">
+        <div class="swiper">
+            <div class="swiper-wrapper">
+                {% assign data = site.data.swiper %}
+                {% for item in data limit : 20 %}
+                    <div class="swiper-slide bg-white rounded-3">
+                        <a href="#">
+                            <div class="d-flex justify-content-center justify-content-md-start align-items-center p-4 bg-light bg-opacity-10 rounded-3">
+                                {% assign initial = item.title | split : "" %}
+                                <button type="button" class="btn rounded-5 text-white" style="background-color:#000000;height:50px;width:50px;">
+                                    {{ initial | first }}
+                                </button>
+                                <div class="ms-4 h6 fw-normal mb-0">
+                                    <div class="d-flex">
+                                        <h5 class="purecounter mb-0 fw-bold">{{ item.title }}</h5>
+                                    </div>
+                                    <p class="mb-0" style="text-decoration: underline;">Shop Now</p>
+                                </div>
+                            </div>
+                        </a>
+                    </div>
+                {% endfor %}
+            </div>
+        </div>
+        <!-- Swiper JS -->
+        <script src="{{ 'swiper-bundle.min.js' | prepend: '/assets/js/' | absolute_url }}"></script>
+
+        <!-- Initialize Swiper -->
+        <script>
+            const swiper = new Swiper('.swiper', {
+                direction: 'horizontal',
+                loop: true,
+                spaceBetween: 20,
+                centeredSlides: true,
+                breakpoints: {
+                    1: {
+                        slidesPerView: 1.3
+                    },
+                    540: {
+                        slidesPerView: 1.8
+                    },
+                    720: {
+                        slidesPerView: 2.5
+                    },
+                    960: {
+                        slidesPerView: 3.4
+                    },
+                    1140: {
+                        slidesPerView: 4
+                    },
+                    1320: {
+                        slidesPerView: 4.5
+                    }
+                }
+            });
+        </script>
+    </div>
+    <div class="d-flex justify-content-center">
+        <a href="{{ '/' | absolute_url }}" class="btn btn-link">Here can be a link</a>
+    </div>
+</section>
+
+<section class="pb-16 pt-6">
+    <div class="container">
+        <div class="row">
+            <div class="offset-lg-3 col-lg-6 col-md-12 col-12">
+                <div class="mb-5 text-center">
+                    <h2 class="h1 mb-3">About edward Smith</h2>
+                    <p>The candidate</p>
+                </div>
+            </div>
+            <div class="offset-lg-2">
+                <div class="col-6">
+                    <p class="lead">I am native Texan who was born in Dallas, raised in Fort Worth and went to college at Texas A&M University in College Station. After law school my wife, Casey, and I headed west to California and settled in San Francisco. After a couple years we got an itch for adventure and left San Francisco for Santiago, Chile. In 2008 when our time in Santiago came to an end we moved to Austin and have called Austin home ever since.</p>
+                    <p>Since moving to Austin our household has expanded to include three children. I have also taken up playing the banjo, piano and sandlot baseball for the East Austin Jardineros Baseball Club. My family and I attend the urban, progressive community of faith committed to social justice, inclusiveness and reconciliation known as University United Methodist Church in Austin.</p>
+                    <ul>
+                        <li>Quick Facts</li>
+                        <li>Age: 39</li>
+                        <li>Occupation: Attorney</li>
+                        <li>Education: Juris Doctor (JD) Texas Wesleyan School of Law (Texas A&M University School of Law)</li>
+                        <li>Hometown: Austin</li>
+                    </ul>
+                </div>
+                <div class="col-6">
+                    <div class="img-overlay img-zoom">
+                        <img class="rounded img-fluid w-100" src="assets/images/edward-smith-headshot.webp" alt="podcast">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section id="about-the-campaign" class="pb-16 pt-6">
+    <div class="container">
+        <div class="row">
+            <div class="offset-lg-3 col-lg-6 col-md-12 col-12">
+                <div class="mb-8 text-center">
+                    <h2 class="mb-3 h1">FAQ</h2>
+                    <p class="lead">You asked, I answered</p>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="offset-lg-3 col-lg-6 col-md-12 col-12">
+            {% assign data = site.data.faqs %}
+            {% include faqs.html %}
+        </div>
+    </div>
+</section>
