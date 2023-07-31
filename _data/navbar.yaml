@@ -1,4 +1,4 @@
-- name: About Us
+- name: About
   href: /about/
 
 - name: FAQ
@@ -6,3 +6,6 @@
 
 - name: Contact
   href: /contact/
+
+- name: Game
+  href: /g/game/
