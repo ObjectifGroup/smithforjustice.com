@@ -39,8 +39,8 @@ schema_type: Organization # Organization/Person
 # Site Information
 title: Edward Smith for Justice
 description: Learn about Edward Smith, a Democratic candidate for Justice, 3rd Court of Appeals, Place 2.
-# logo: /path/to/your/logo.png
-# favicon: /path/to/your/favicon.png
+logo: /assets/images/re-elect-edward-smith-logo.svg
+favicon: /favicon.ico
 url: https://staging.smithforjustice.com
 
 # Author Information
