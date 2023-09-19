@@ -1,0 +1,73 @@
+<section id="swiper-content" class="pt-lg-14 pb-lg-12 py-8 bg-primary">
+    <div class="container">
+        <div class="row">
+            <div class="offset-xl-3 col-xl-6 col-md-12 col-12">
+                <div class="mb-8 text-center">
+                    <h2 class="mb-3 h1">This is title text</h2>
+                    <p class="lead">This is subtitle text</p>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="container-lg px-0">
+        <link href="{{ 'swiper-bundle.min.css' | prepend: '/assets/css/' | absolute_url }}" rel="stylesheet">
+        <div class="swiper">
+            <div class="swiper-wrapper">
+                {% assign data = site.data.swiper %}
+                {% for item in data limit : 20 %}
+                    <div class="swiper-slide bg-white rounded-3">
+                        <a href="#">
+                            <div class="d-flex justify-content-center justify-content-md-start align-items-center p-4 bg-light bg-opacity-10 rounded-3">
+                                {% assign initial = item.title | split : "" %}
+                                <button type="button" class="btn rounded-5 text-white" style="background-color:#000000;height:50px;width:50px;">
+                                    {{ initial | first }}
+                                </button>
+                                <div class="ms-4 h6 fw-normal mb-0">
+                                    <div class="d-flex">
+                                        <h5 class="purecounter mb-0 fw-bold">{{ item.title }}</h5>
+                                    </div>
+                                    <p class="mb-0" style="text-decoration: underline;">Support</p>
+                                </div>
+                            </div>
+                        </a>
+                    </div>
+                {% endfor %}
+            </div>
+        </div>
+        <!-- Swiper JS -->
+        <script src="{{ 'swiper-bundle.min.js' | prepend: '/assets/js/' | absolute_url }}"></script>
+
+        <!-- Initialize Swiper -->
+        <script>
+            const swiper = new Swiper('.swiper', {
+                direction: 'horizontal',
+                loop: true,
+                spaceBetween: 20,
+                centeredSlides: true,
+                breakpoints: {
+                    1: {
+                        slidesPerView: 1.3
+                    },
+                    540: {
+                        slidesPerView: 1.8
+                    },
+                    720: {
+                        slidesPerView: 2.5
+                    },
+                    960: {
+                        slidesPerView: 3.4
+                    },
+                    1140: {
+                        slidesPerView: 4
+                    },
+                    1320: {
+                        slidesPerView: 4.5
+                    }
+                }
+            });
+        </script>
+    </div>
+    <div class="d-flex justify-content-center">
+        <a href="{{ '/' | absolute_url }}" class="btn btn-link">Here can be a link</a>
+    </div>
+</section>

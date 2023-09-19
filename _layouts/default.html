@@ -5,127 +5,125 @@ layout: base
 <div class="fixed-top border-3 border-top border-primary"></div>
 
 <div class="container-fluid">
-    <div class="row">
+  <div class="row">
 
-        <div class="sidebar border border-right col-md-3 col-lg-2 p-0 bg-white">
+    <div class="sidebar border border-right col-md-3 col-lg-2 p-0 bg-white">
 
-            <div class="offcanvas-md offcanvas-end bg-white sticky-md-top" tabindex="-1" id="offcanvasNavbar"
+      <div class="offcanvas-md offcanvas-end bg-white sticky-md-top" tabindex="-1" id="offcanvasNavbar"
                 aria-labelledby="offcanvasNavbarLabel">
 
-                <div class="offcanvas-header">
-                    <h5 class="offcanvas-title" id="offcanvasNavbarLabel">Menu</h5>
-                    <button type="button" class="btn-close text-reset" data-bs-dismiss="offcanvas"
+        <div class="offcanvas-header">
+          <h5 class="offcanvas-title" id="offcanvasNavbarLabel">Menu</h5>
+          <button type="button" class="btn-close text-reset" data-bs-dismiss="offcanvas"
                         data-bs-target="#offcanvasNavbar" aria-controls="offcanvasNavbar" aria-label="Close"></button>
-                </div>
+        </div>
 
-                <div class="offcanvas-body d-md-flex flex-column p-3 pt-lg-3 overflow-y-auto">
+        <div class="offcanvas-body d-md-flex flex-column p-3 pt-lg-3 overflow-y-auto">
 
-                    <a class="navbar-brand fs-3 d-none d-md-block" href="{{ '/' | absolute_url }}">
-                        <img src="{{ '/assets/images/re-elect-edward-smith-logo.svg' | absolute_url }}"
+          <a class="navbar-brand fs-3 d-none d-md-block" href="{{ '/' | absolute_url }}">
+            <img src="{{ '/assets/images/re-elect-edward-smith-logo.svg' | absolute_url }}"
                             class="img-fluid" width="283px" heigh="auto"/>
-                    </a>
+          </a>
 
-                    <!-- navigation -->
-                    <ul class="navbar-nav justify-content-end flex-grow-1 pe-3 mb-2">
-                        {% for item in site.data.navbar %}
-                            <li class="nav-item">
-                                <a class="nav-link" aria-current="page" href="{{ item.href | absolute_url }}">
-                                    {{ item.name }}
-                                </a>
-                            </li>
-                        {% endfor %}
-                        <li class="nav-item">
-                            <a class="nav-link" href="#" data-bs-toggle="modal" data-bs-target="#aboutTheCampaign">
-                                About the campaign<i class="fas fa-info-circle ms-2"></i>
+          <!-- navigation -->
+          <ul class="navbar-nav justify-content-end flex-grow-1 pe-3 mb-2">
+            {% for item in site.data.navbar %}
+              <li class="nav-item">
+                <a class="nav-link" aria-current="page" href="{{ item.href | absolute_url }}">
+                  {{ item.name }}
+                </a>
+              </li>
+            {% endfor %}
+            <li class="nav-item">
+              <a class="nav-link" href="#" data-bs-toggle="modal" data-bs-target="#gameModal">
+                                Game (modal)
                             </a>
-                        </li>
-                    </ul>
+            </li>
+          </ul>
 
-                    <hr class="my-3">
+          <hr class="my-3">
 
-                    <!-- social links -->
-                    <div class="d-flex gap-2">
-                        <a href="https://www.facebook.com/" class="btn btn-outline-primary">
-                            <i class="fa-brands fa-facebook-f"></i>
-                        </a>
-                        <a href="https://www.twitter.com/" class="btn btn-outline-primary">
-                            <i class="fa-brands fa-twitter"></i>
-                        </a>
-                    </div>
+          <!-- social links -->
+          <div class="d-flex gap-2">
+            <a href="https://www.facebook.com/" class="btn btn-outline-primary">
+              <i class="fa-brands fa-facebook-f"></i>
+            </a>
+            <a href="https://www.twitter.com/" class="btn btn-outline-primary">
+              <i class="fa-brands fa-twitter"></i>
+            </a>
+          </div>
 
-                    <hr class="my-3">
+          <hr class="my-3">
 
-                    <!-- cta buttons -->
-                    <div class="d-grid gap-2">
-                        <a href="https://donateway.com/donate/r9UYWfJc/smith-for-justice/payment" class="btn btn-primary" target="_blank">
-                            <i class="fa-regular fa-credit-card"></i> Donate</a>
-                        <a href="#" class="btn btn-primary">
-                            <i class="fa-solid fa-users"></i> Volunteer</a>
-                    </div>
-
-                </div>
-
-            </div>
+          <!-- cta buttons -->
+          <div class="d-grid gap-2">
+            <a href="https://donateway.com/donate/r9UYWfJc/smith-for-justice/payment" class="btn btn-primary" target="_blank">
+              <i class="fa-regular fa-credit-card"></i> Donate</a>
+            <a href="#" class="btn btn-primary">
+              <i class="fa-solid fa-users"></i> Volunteer</a>
+          </div>
 
         </div>
 
-        <main class="col-md-9 ms-sm-auto col-lg-10 px-0">
-
-            <!-- mobile navbar -->
-            <div class="position-relative">
-                <div class="navbar navbar-light border-bottom d-md-none">
-                    <div class="container-fluid">
-
-                        <a class="navbar-brand fs-3" href="{{ '/' | absolute_url }}">
-                            <img src="{{ '/assets/images/re-elect-edward-smith-logo.svg' | absolute_url }}"
-                                class="img-fluid" width="80px" heigh="auto"/>
-                        </a>
-
-                        <button class="navbar-toggler" type="button" data-bs-toggle="offcanvas"
-                            data-bs-target="#offcanvasNavbar" aria-controls="offcanvasNavbar">
-                            <span class="navbar-toggler-icon"></span>
-                        </button>
-
-                    </div>
-                </div>
-            </div>
-
-            <!-- hero section -->
-            {% if page.image %}
-                <header class="bg-cover bg-light{% if page.fullscreen_header == true %} vh-100{% else %} min-vh-50{% endif %}"
-                style="background-image:linear-gradient(180deg, rgba(255,255,255, 0.1) 70%, rgba(0,0,0, 0.6) 100%),url('{{ page.image }}'); background-size: cover; background-repeat: no-repeat; background-position: top;">
-                {% else %}
-                    <header class="bg-hero-animated-gradiant{% if page.fullscreen_header == true %} vh-100{% else %} min-vh-50{% endif %}">
-                    {% endif %}
-                    <div class="d-flex align-items-center flex-column text-center pb-20 h-100">
-                        <div class="mt-auto">
-                            <h1 class="display-3 mb-3 lh-1 text-white fw-bold">{{ page.title }}</h1>
-                            {% if page.description %}
-                                <p class="m-0 lead text-white fw-bold">{{ page.description | split: ". " | first | strip_html }}</p>
-                            {% endif %}
-                        </div>
-                    </div>
-                </header>
-
-                {{ content }}
-
-                {% include footer.html %}
-
-            </main>
-        </div>
+      </div>
 
     </div>
+
+    <main class="col-md-9 ms-sm-auto col-lg-10 px-0">
+
+      <!-- mobile navbar -->
+      <div class="position-relative">
+        <div class="navbar navbar-light border-bottom d-md-none">
+          <div class="container-fluid">
+
+            <a class="navbar-brand fs-3" href="{{ '/' | absolute_url }}">
+              <img src="{{ '/assets/images/re-elect-edward-smith-logo.svg' | absolute_url }}"
+                                class="img-fluid" width="80px" heigh="auto"/>
+            </a>
+
+            <button class="navbar-toggler" type="button" data-bs-toggle="offcanvas"
+                            data-bs-target="#offcanvasNavbar" aria-controls="offcanvasNavbar">
+              <span class="navbar-toggler-icon"></span>
+            </button>
+
+          </div>
+        </div>
+      </div>
+
+      <!-- hero section -->
+      {% if page.image %}
+        <header class="bg-cover bg-light{% if page.fullscreen_header == true %} vh-100{% else %} min-vh-50{% endif %}"
+                style="background-image:linear-gradient(180deg, rgba(255,255,255, 0.1) 70%, rgba(0,0,0, 0.6) 100%),url('{{ page.image }}'); background-size: cover; background-repeat: no-repeat; background-position: top;">
+          <div class="d-flex align-items-center flex-column text-center pb-20 pb-md-10 h-100">
+            <div class="mt-auto">
+              <h1 class="display-3 mb-3 lh-1 text-orange fw-bold">{{ page.title }}</h1>
+              {% if page.description %}
+                <p class="m-0 lead text-orange fw-bold">{{ page.description | split: ". " | first | strip_html }}</p>
+              {% endif %}
+            </div>
+          </div>
+        </header>
+      {% endif %}
+
+      {{ content }}
+
+      {% include footer.html %}
+
+    </main>
+  </div>
+
+</div>
 </div>
 
 <!-- mobile bottom bar -->
 <div class="fixed-bottom border-top bg-white d-md-none py-2">
-    <div class="container">
-        <div class="d-flex gap-2">
-            <a href="#" class="btn btn-large btn-primary w-100 outbound">
-                <i class="fa-solid fa-users"></i> Volunteer</a>
-            <a href="https://donateway.com/donate/r9UYWfJc/smith-for-justice/payment" class="btn btn-large btn-primary w-100 outbound" target="_blank">
-                <i class="fa-regular fa-credit-card"></i> Donate</a>
-        </div>
-        <p class="my-1 text-muted small text-center">Credit Card, PayPal and ApplePay</p>
-    </div>
+<div class="container">
+  <div class="d-flex gap-2">
+    <a href="#" class="btn btn-large btn-primary w-100 outbound">
+      <i class="fa-solid fa-users"></i> Volunteer</a>
+    <a href="https://donateway.com/donate/r9UYWfJc/smith-for-justice/payment" class="btn btn-large btn-primary w-100 outbound" target="_blank">
+      <i class="fa-regular fa-credit-card"></i> Donate</a>
+  </div>
+  <p class="my-1 text-muted small text-center">Credit Card, PayPal and ApplePay</p>
+</div>
 </div>
