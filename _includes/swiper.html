@@ -16,8 +16,8 @@
                 {% assign data = site.data.swiper %}
                 {% for item in data limit : 20 %}
                     <div class="swiper-slide bg-white rounded-3">
-                        <a href="#">
-                            <div class="d-flex justify-content-center justify-content-md-start align-items-center p-4 bg-light bg-opacity-10 rounded-3">
+                        <a href="#" data-bs-toggle="modal" data-bs-target="#gameModal">
+                            <div class="d-flex justify-content-center justify-content-md-start align-items-center p-4 bg-opacity-10 rounded-3 bg-light">
                                 {% assign initial = item.title | split : "" %}
                                 <button type="button" class="btn rounded-5 text-white" style="background-color:#000000;height:50px;width:50px;">
                                     {{ initial | first }}
@@ -44,6 +44,8 @@
                 loop: true,
                 spaceBetween: 20,
                 centeredSlides: true,
+                autoplayDelay: 2500,
+                autoplayDisableOnInteraction: false,
                 breakpoints: {
                     1: {
                         slidesPerView: 1.3

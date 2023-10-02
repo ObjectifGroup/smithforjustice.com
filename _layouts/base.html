@@ -4,7 +4,7 @@
 
     {% include head.html %}
 
-    <body>
+    <body id="home">
 
         {{ content }}
 
@@ -14,7 +14,9 @@
             {% include google-analytics.html %}
         {% endif %}
 
-        {% include about-the-campaign.html %}
+        {% include modal-game.html %}
+
+        {% include modal-donate.html %}
 
     </body>
 

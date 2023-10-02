@@ -1,11 +1,11 @@
+- name: Home
+  href: "#home"
+
 - name: About
-  href: /about/
+  href: "#about"
 
 - name: FAQ
-  href: /faq/
+  href: "#faq"
 
 - name: Contact
-  href: /contact/
-
-- name: Game
-  href: /g/game/
+  href: "#contact"

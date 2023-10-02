@@ -47,25 +47,75 @@ fullscreen_header: true
                 </ul>
             </div>
         </div>
-    </section>
+    </div>
+</section>
 
-    <section id="faq" class="pb-lg-12 py-8">
-        <div class="container">
-            <div class="row offset-md-1">
-                <div class="col col-md-11">
-                    <div class="mb-8 text-center">
-                        <h2 class="mb-3 h1">FAQ</h2>
-                        <p class="lead">You asked, I answered</p>
+<section id="faq" class="pb-lg-12 py-8">
+    <div class="container">
+        <div class="row offset-md-1">
+            <div class="col col-md-11">
+                <div class="mb-8 text-center">
+                    <h2 class="mb-3 h1">FAQ</h2>
+                    <p class="lead">You asked, I answered</p>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="container">
+        <div class="row offset-md-1">
+            <div class="col col-md-11">
+                {% assign data = site.data.faqs %}
+                {% include faqs.html %}
+            </div>
+        </div>
+    </div>
+</section>
+
+<section id="contact" class="pb-lg-12 py-8 bg-light">
+    <div class="container">
+        <div class="row offset-md-1">
+            <div class="col col-md-11">
+                <div class="mb-8 text-center">
+                    <h2 class="mb-3 h1">Contact</h2>
+                    <p class="lead">Get involved with the campaign.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="container">
+        <div class="row offset-md-1">
+            <div class="col col-md-11">
+                <form class="row">
+                    <div class=" col-md-6 col-12 mb-3">
+                        <label for="fname" class="sr-only">First Name</label>
+                        <input type="text" class="form-control" id="fname" placeholder="First Name" name="fname" required="">
                     </div>
-                </div>
+                    <div class=" col-md-6 col-12 mb-3">
+                        <label for="lname" class="sr-only">Last Name</label>
+                        <input type="text" class="form-control" id="lname" placeholder="Last Name" name="lname" required="">
+                    </div>
+                    <div class=" col-12 mb-3">
+                        <label for="email" class="sr-only"> Email</label>
+                        <input type="email" class="form-control" id="email" placeholder="Email" name="email" required="">
+                    </div>
+                    <div class="mb-3 col-12 mb-3">
+                        <label for="purpose" class="sr-only">Purpose</label>
+                        <select class="form-select" id="purpose">
+                            <option selected="">Select Purpose</option>
+                            <option value="1">I want to volunteer</option>
+                            <option value="2">I want to invite you to speak at or attend an event</option>
+                            <option value="3">I have general questions about the camapign</option>
+                        </select>
+                    </div>
+                    <div class="col-12">
+                        <div class="d-grid">
+                            <button type="submit" class="btn btn-primary">
+                                Send Messages
+                            </button>
+                        </div>
+                    </div>
+                </form>
             </div>
         </div>
-        <div class="container">
-            <div class="row offset-md-1">
-                <div class="col col-md-11">
-                    {% assign data = site.data.faqs %}
-                    {% include faqs.html %}
-                </div>
-            </div>
-        </div>
-    </section>
+    </div>
+</section>

@@ -20,7 +20,7 @@ layout: base
 
         <div class="offcanvas-body d-md-flex flex-column p-3 pt-lg-3 overflow-y-auto">
 
-          <a class="navbar-brand fs-3 d-none d-md-block" href="{{ '/' | absolute_url }}">
+          <a class="navbar-brand fs-3 d-none d-md-block" href="#home">
             <img src="{{ '/assets/images/re-elect-edward-smith-logo.svg' | absolute_url }}"
                             class="img-fluid" width="283px" heigh="auto"/>
           </a>
@@ -29,16 +29,11 @@ layout: base
           <ul class="navbar-nav justify-content-end flex-grow-1 pe-3 mb-2">
             {% for item in site.data.navbar %}
               <li class="nav-item">
-                <a class="nav-link" aria-current="page" href="{{ item.href | absolute_url }}">
+                <a class="nav-link" aria-current="page" href="{{ item.href }}">
                   {{ item.name }}
                 </a>
               </li>
             {% endfor %}
-            <li class="nav-item">
-              <a class="nav-link" href="#" data-bs-toggle="modal" data-bs-target="#gameModal">
-                                Game (modal)
-                            </a>
-            </li>
           </ul>
 
           <hr class="my-3">
@@ -57,10 +52,10 @@ layout: base
 
           <!-- cta buttons -->
           <div class="d-grid gap-2">
-            <a href="https://donateway.com/donate/r9UYWfJc/smith-for-justice/payment" class="btn btn-primary" target="_blank">
+            <a href="#" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#donateModal">
               <i class="fa-regular fa-credit-card"></i> Donate</a>
-            <a href="#" class="btn btn-primary">
-              <i class="fa-solid fa-users"></i> Volunteer</a>
+            <!--<a href="#" class="btn btn-primary">
+              <i class="fa-solid fa-users"></i> Volunteer</a>-->
           </div>
 
         </div>
@@ -75,17 +70,12 @@ layout: base
       <div class="position-relative">
         <div class="navbar navbar-light border-bottom d-md-none">
           <div class="container-fluid">
-
             <a class="navbar-brand fs-3" href="{{ '/' | absolute_url }}">
-              <img src="{{ '/assets/images/re-elect-edward-smith-logo.svg' | absolute_url }}"
-                                class="img-fluid" width="80px" heigh="auto"/>
+              <img src="{{ '/assets/images/re-elect-edward-smith-logo.svg' | absolute_url }}" class="img-fluid" width="80px" heigh="auto"/>
             </a>
-
-            <button class="navbar-toggler" type="button" data-bs-toggle="offcanvas"
-                            data-bs-target="#offcanvasNavbar" aria-controls="offcanvasNavbar">
+            <button class="navbar-toggler" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasNavbar" aria-controls="offcanvasNavbar">
               <span class="navbar-toggler-icon"></span>
             </button>
-
           </div>
         </div>
       </div>
@@ -117,13 +107,13 @@ layout: base
 
 <!-- mobile bottom bar -->
 <div class="fixed-bottom border-top bg-white d-md-none py-2">
-<div class="container">
-  <div class="d-flex gap-2">
-    <a href="#" class="btn btn-large btn-primary w-100 outbound">
-      <i class="fa-solid fa-users"></i> Volunteer</a>
-    <a href="https://donateway.com/donate/r9UYWfJc/smith-for-justice/payment" class="btn btn-large btn-primary w-100 outbound" target="_blank">
-      <i class="fa-regular fa-credit-card"></i> Donate</a>
+  <div class="container">
+    <div class="d-flex gap-2">
+      <!--<a href="#" class="btn btn-large btn-primary w-100 outbound">
+        <i class="fa-solid fa-users"></i> Volunteer</a>-->
+      <a href="#" class="btn btn-large btn-primary w-100 outbound" data-bs-toggle="modal" data-bs-target="#donateModal">
+        <i class="fa-regular fa-credit-card"></i> Donate</a>
+    </div>
+    <p class="my-1 text-muted small text-center">Credit Card, PayPal and ApplePay</p>
   </div>
-  <p class="my-1 text-muted small text-center">Credit Card, PayPal and ApplePay</p>
-</div>
 </div>
