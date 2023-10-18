@@ -1,0 +1,20 @@
+<section id="faq" class="pb-lg-12 py-8">
+    <div class="container">
+        <div class="row offset-md-1">
+            <div class="col col-md-11">
+                <div class="mb-8 text-center">
+                    <h2 class="mb-3 h1">FAQ</h2>
+                    <p class="lead">You asked, I answered</p>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="container">
+        <div class="row offset-md-1">
+            <div class="col col-md-11">
+                {% assign data = site.data.faqs %}
+                {% include faqs.html %}
+            </div>
+        </div>
+    </div>
+</section>

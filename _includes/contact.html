@@ -1,0 +1,166 @@
+<section id="contact" class="pb-lg-12 py-8 bg-light">
+    <div class="container">
+        <div class="row offset-md-1">
+            <div class="col col-md-11">
+                <div class="mb-8 text-center">
+                    <h2 class="mb-3 h1">Contact</h2>
+                    <p class="lead">Get involved with the campaign.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="container">
+        <div class="row offset-md-1">
+            <div class="col col-md-11">
+
+                <style>
+                    .address-fields {
+                        max-height: 0;
+                        overflow: hidden;
+                        transition: max-height 0.5s ease-in-out;
+                    }
+
+                    .show-address-fields {
+                        max-height: 500px;
+                        /* Adjust this value as needed */
+                    }
+                </style>
+
+                <form
+                    method="POST"
+                    action="https://script.google.com/macros/s/AKfycbwxIy_Zk8Fj-0KagJop_JZ4Jgy0nrdcjBClJax4BG9C-JilkhFM0--w8hV7G5Zaj2zq/exec"
+                    id="my-form">
+
+                    <!-- Required fields -->
+                    <div class="row">
+                        <div class="col-md-6 col-12 mb-3">
+                            <label for="fname" class="sr-only">First Name</label>
+                            <input type="text" class="form-control" id="fname" placeholder="First Name" name="fname" required="">
+                        </div>
+                        <div class="col-md-6 col-12 mb-3">
+                            <label for="lname" class="sr-only">Last Name</label>
+                            <input type="text" class="form-control" id="lname" placeholder="Last Name" name="lname" required="">
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-12 mb-3">
+                            <label for="email" class="sr-only"> Email</label>
+                            <input type="email" class="form-control" id="email" placeholder="Email" name="email" required="">
+                        </div>
+                    </div>
+
+                    <!-- Toggle additional form fields for address -->
+                    <div class="row">
+                        <div class="col-12">
+                            <input class="form-check-input" type="checkbox" role="switch" id="addressSwitch" name="mailme">
+                            <label class="form-check-label" for="addressSwitch">I'd like to receive mail by post</label>
+                        </div>
+                    </div>
+
+                    <!-- Additional form fields for address -->
+                    <div class="address-fields mb-3 row">
+                        <div class="col-md-6 col-12 mb-3">
+                            <label for="address1">Address Line 1</label>
+                            <input type="text" class="form-control" id="address1" name="address1">
+                        </div>
+                        <div class="col-md-6 col-12 mb-3">
+                            <label for="address2">Address Line 2</label>
+                            <input type="text" class="form-control" id="address2" name="address2">
+                        </div>
+                        <div class="col-md-4 col-12 mb-3">
+                            <label for="city">City</label>
+                            <input type="text" class="form-control" id="city" name="city">
+                        </div>
+                        <div class="col-md-4 col-12 mb-3">
+                            <label for="state">State</label>
+                            <input type="text" class="form-control" id="state" name="state">
+                        </div>
+                        <div class="col-md-4 col-12 mb-3">
+                            <label for="postalcode">Postal Code</label>
+                            <input type="text" class="form-control" id="postalcode" name="postalcode">
+                        </div>
+                    </div>
+
+                    <!-- Purpose selector -->
+                    <div class="mb-3 col-12 mb-3">
+                        <label for="purpose" class="sr-only">Purpose</label>
+                        <select class="form-select" id="purpose" name="purpose">
+                            <option selected="">Why are you contacting the campaign?</option>
+                            <option value="I want to volunteer">I want to volunteer</option>
+                            <option value="I want to invite you to speak at or attend an event">I want to invite you to speak at or attend an event</option>
+                            <option value="I'd like to be kept up to date with the campaign">I'd like to be kept up to date with the campaign</option>
+                            <option value="I have general questions about the camapign">I have general questions about the camapign</option>
+                        </select>
+                    </div>
+
+                    <!-- Add a message to the campaign  -->
+                    <div class="mb-3 col-12">
+                        <label class="form-label" for="message">Send a message to the campaign.</label>
+                        <textarea class="form-control" id="message" rows="3" name="message"></textarea>
+                    </div>
+
+                    <!-- Submit -->
+                    <div class="col-12">
+                        <div class="d-grid">
+                            <button type="submit" class="btn btn-primary">
+                                Send Messages
+                            </button>
+                        </div>
+                    </div>
+
+                </form>
+
+                <!-- Success alert -->
+                <div class="alert alert-success mt-3" id="success-alert" style="display: none;">
+                    <strong>Success!</strong> Your form has been submitted successfully.
+                </div>
+
+                <!-- Form scripts -->
+                <script>
+                    // reveal address inputs
+                    $(document).ready(function () {
+                        const addressSwitch = document.getElementById('addressSwitch');
+                        const addressFields = document.querySelector('.address-fields');
+
+                        addressSwitch.addEventListener('change', function () {
+                            if (addressSwitch.checked) {
+                                addressFields
+                                    .classList
+                                    .add('show-address-fields');
+                            } else {
+                                addressFields
+                                    .classList
+                                    .remove('show-address-fields');
+                            }
+                        });
+                    });
+
+                    // show success message
+                    window.addEventListener("load", function () {
+                        const form = document.getElementById('my-form');
+                        const successAlert = document.getElementById('success-alert');
+
+                        form.addEventListener("submit", function (e) {
+                            e.preventDefault();
+                            const data = new FormData(form);
+                            const action = e.target.action;
+
+                            fetch(action, {
+                                method: 'POST',
+                                body: data
+                            }).then(() => {
+                                // Show the Bootstrap success alert
+                                successAlert.style.display = 'block';
+
+                                // Optional: You can hide the alert after a few seconds if needed
+                                setTimeout(function () {
+                                    successAlert.style.display = 'none';
+                                }, 5000); // 5000 milliseconds (5 seconds)
+                            });
+                        });
+                    });
+                </script>
+            </div>
+        </div>
+    </div>
+</section>

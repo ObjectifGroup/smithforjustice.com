@@ -1,35 +1,22 @@
-<section id="swiper-content" class="pt-lg-14 pb-lg-12 py-8 bg-primary">
-    <div class="container">
-        <div class="row">
-            <div class="offset-xl-3 col-xl-6 col-md-12 col-12">
-                <div class="mb-8 text-center">
-                    <h2 class="mb-3 h1">This is title text</h2>
-                    <p class="lead">This is subtitle text</p>
-                </div>
-            </div>
-        </div>
-    </div>
+<section id="swiper-content" class="pt-lg-14 py-8 bg-primary">
     <div class="container-lg px-0">
         <link href="{{ 'swiper-bundle.min.css' | prepend: '/assets/css/' | absolute_url }}" rel="stylesheet">
         <div class="swiper">
             <div class="swiper-wrapper">
                 {% assign data = site.data.swiper %}
                 {% for item in data limit : 20 %}
-                    <div class="swiper-slide bg-white rounded-3">
-                        <a href="#" data-bs-toggle="modal" data-bs-target="#gameModal">
-                            <div class="d-flex justify-content-center justify-content-md-start align-items-center p-4 bg-opacity-10 rounded-3 bg-light">
-                                {% assign initial = item.title | split : "" %}
-                                <button type="button" class="btn rounded-5 text-white" style="background-color:#000000;height:50px;width:50px;">
-                                    {{ initial | first }}
-                                </button>
-                                <div class="ms-4 h6 fw-normal mb-0">
-                                    <div class="d-flex">
-                                        <h5 class="purecounter mb-0 fw-bold">{{ item.title }}</h5>
-                                    </div>
-                                    <p class="mb-0" style="text-decoration: underline;">Support</p>
-                                </div>
-                            </div>
-                        </a>
+                    <div class="swiper-slide">
+                        {% if item.easteregg == true %}
+                            <a href="#" data-bs-toggle="modal" data-bs-target="#gameModal">
+                            {% else %}
+                                <li>
+                                {% endif %}
+                                <img src="{{ item.image_path | absolute_url }}" class="img-fluid">
+                                {% if item.easteregg == true %}
+                                </a>
+                            {% else %}
+                            </li>
+                        {% endif %}
                     </div>
                 {% endfor %}
             </div>
@@ -69,7 +56,9 @@
             });
         </script>
     </div>
-    <div class="d-flex justify-content-center">
-        <a href="{{ '/' | absolute_url }}" class="btn btn-link">Here can be a link</a>
+    <div class="d-flex pt-8">
+        <a href="https://www.instagram.com/smith4justice/" class="btn btn-outline-white mx-auto" target="_blank">
+            <i class="fa-brands fa-instagram"></i> Follow on Instagram
+        </a>
     </div>
 </section>

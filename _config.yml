@@ -35,11 +35,17 @@ defaults:
 
 # Schema Data
 schema_type: Organization # Organization/Person
+addressLocality: Austin, Texas
+postalCode: 78765
+streetAddress: P.O. Box 650085
+email: contact@smithforjustice.com
+
 
 # Site Information
 title: Edward Smith for Justice
 description: Learn about Edward Smith, a Democratic candidate for Justice, 3rd Court of Appeals, Place 2.
 logo: /assets/images/re-elect-edward-smith-logo.svg
+og_image: /assets/images/default-ogimage.png
 favicon: /favicon.ico
 url: https://staging.smithforjustice.com
 
@@ -59,6 +65,7 @@ author:
   social_links:
     - https://www.facebook.com/Smith4Justice
     - https://www.twitter.com/SmithforJustice
+    - https://www.instagram.com/smith4justice
 
 # Social Profiles
 twitter_username: SmithforJustice

@@ -23,7 +23,7 @@ var Ball = {
       speed: incrementedSpeed || 9,
       image: new Image(),
     };
-    ball.image.src = "/assets/images/ball.png"; // Replace with the path to your image
+    ball.image.src = "/assets/images/ball-white.png"; // Replace with the path to your image
     return ball;
   },
 };

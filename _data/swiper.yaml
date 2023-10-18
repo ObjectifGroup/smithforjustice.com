@@ -1,29 +1,41 @@
 - title: Lorem ipsum dolor sit amet
   description: Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt
+  image_path: /assets/images/cards/1.png
 
 - title: Lorem ipsum dolor sit amet
   description: Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt
+  image_path: /assets/images/cards/2.png
 
 - title: Lorem ipsum dolor sit amet
   description: Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt
+  image_path: /assets/images/cards/3.png
+  easteregg: true
 
 - title: Lorem ipsum dolor sit amet
   description: Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt
+  image_path: /assets/images/cards/4.png
 
 - title: Lorem ipsum dolor sit amet
   description: Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt
+  image_path: /assets/images/cards/5.png
 
 - title: Lorem ipsum dolor sit amet
   description: Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt
+  image_path: /assets/images/cards/1.png
 
 - title: Lorem ipsum dolor sit amet
   description: Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt
+  image_path: /assets/images/cards/2.png
 
 - title: Lorem ipsum dolor sit amet
   description: Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt
+  image_path: /assets/images/cards/3.png
+  easteregg: true
 
 - title: Lorem ipsum dolor sit amet
   description: Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt
+  image_path: /assets/images/cards/4.png
 
 - title: Lorem ipsum dolor sit amet
   description: Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt
+  image_path: /assets/images/cards/5.png
