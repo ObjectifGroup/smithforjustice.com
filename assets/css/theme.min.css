@@ -276,7 +276,7 @@
   --coach-green: #24a148;
   --coach-teal: #20c997;
   --coach-cyan: #17a2b8;
-  --coach-black: #261f44;
+  --coach-black: #000000;
   --coach-gray: #6f6985;
   --coach-gray-dark: #565266;
   --coach-gray-100: #f4f4f5;
@@ -4162,19 +4162,19 @@ fieldset:disabled .btn {
 }
 .btn-dark {
   --coach-btn-color: #fff;
-  --coach-btn-bg: #261f44;
-  --coach-btn-border-color: #261f44;
+  --coach-btn-bg: #000000;
+  --coach-btn-border-color: #000000;
   --coach-btn-hover-color: #fff;
-  --coach-btn-hover-bg: #474160;
-  --coach-btn-hover-border-color: #3c3557;
+  --coach-btn-hover-bg: #101010;
+  --coach-btn-hover-border-color: #101010;
   --coach-btn-focus-shadow-rgb: 71, 65, 96;
   --coach-btn-active-color: #fff;
-  --coach-btn-active-bg: #514c69;
-  --coach-btn-active-border-color: #3c3557;
-  --coach-btn-active-shadow: inset 0 3px 5px rgba(38, 31, 68, 0.125);
+  --coach-btn-active-bg: #000000;
+  --coach-btn-active-border-color: #000000;
+  --coach-btn-active-shadow: inset 0 3px 5px rgba(0, 0, 0, 0.125);
   --coach-btn-disabled-color: #fff;
-  --coach-btn-disabled-bg: #261f44;
-  --coach-btn-disabled-border-color: #261f44;
+  --coach-btn-disabled-bg: #616161;
+  --coach-btn-disabled-border-color: #616161;
 }
 .btn-white {
   --coach-btn-color: #261f44;

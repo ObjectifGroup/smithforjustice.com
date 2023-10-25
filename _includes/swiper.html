@@ -7,11 +7,11 @@
                 {% for item in data limit : 20 %}
                     <div class="swiper-slide">
                         {% if item.easteregg == true %}
-                            <a href="#" data-bs-toggle="modal" data-bs-target="#gameModal">
+                            <a href="#" data-bs-toggle="modal" data-bs-target="#gameModal1">
                             {% else %}
                                 <li>
                                 {% endif %}
-                                <img src="{{ item.image_path | absolute_url }}" class="img-fluid">
+                                <img src="{{ item.image_path | absolute_url }}" class="img-fluid{% if item.easteregg == true %} border border-warning border-3{% endif %}">
                                 {% if item.easteregg == true %}
                                 </a>
                             {% else %}
@@ -27,12 +27,19 @@
         <!-- Initialize Swiper -->
         <script>
             const swiper = new Swiper('.swiper', {
-                direction: 'horizontal',
+
+
+
                 loop: true,
+                autoplay: {
+                    delay: 1,
+                    disableOnInteraction: false
+                },
+                speed: 5000,
+                freeMode: true,
+                direction: 'horizontal',
                 spaceBetween: 20,
-                centeredSlides: true,
-                autoplayDelay: 2500,
-                autoplayDisableOnInteraction: false,
+                centeredSlides: false,
                 breakpoints: {
                     1: {
                         slidesPerView: 1.3
