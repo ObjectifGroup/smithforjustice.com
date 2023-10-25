@@ -7,15 +7,11 @@
                 {% for item in data limit : 20 %}
                     <div class="swiper-slide">
                         {% if item.easteregg == true %}
-                            <a href="#" data-bs-toggle="modal" data-bs-target="#gameModal1">
-                            {% else %}
-                                <li>
-                                {% endif %}
-                                <img src="{{ item.image_path | absolute_url }}" class="img-fluid{% if item.easteregg == true %} border border-warning border-3{% endif %}">
-                                {% if item.easteregg == true %}
-                                </a>
-                            {% else %}
-                            </li>
+                            <a href="#" data-bs-toggle="modal" data-bs-target="#gameModal1" aria-label="Click to open the hidden game.">
+                            {% endif %}
+                            <img src="{{ item.image_path | absolute_url }}" class="img-fluid{% if item.easteregg == true %} border border-warning border-3{% endif %}" alt="{{ item.description }}">
+                            {% if item.easteregg == true %}
+                            </a>
                         {% endif %}
                     </div>
                 {% endfor %}
@@ -27,10 +23,6 @@
         <!-- Initialize Swiper -->
         <script>
             const swiper = new Swiper('.swiper', {
-
-
-
-                loop: true,
                 autoplay: {
                     delay: 1,
                     disableOnInteraction: false

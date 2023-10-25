@@ -1,41 +1,41 @@
-- title: Lorem ipsum dolor sit amet
-  description: Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt
-  image_path: /assets/images/cards/1.png
+- title:
+  description: Ed Smith with his children.
+  image_path: /assets/images/cards/1.webp
 
-- title: Lorem ipsum dolor sit amet
-  description: Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt
-  image_path: /assets/images/cards/2.png
+- title:
+  description: Ed Smith with his son.
+  image_path: /assets/images/cards/2.webp
 
-- title: Lorem ipsum dolor sit amet
-  description: Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt
-  image_path: /assets/images/cards/3.png
+- title:
+  description: Ed Smith with is wife, Casey.
+  image_path: /assets/images/cards/3.webp
   easteregg: true
 
-- title: Lorem ipsum dolor sit amet
-  description: Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt
-  image_path: /assets/images/cards/4.png
+- title:
+  description: Ed Smith with his children.
+  image_path: /assets/images/cards/4.webp
 
-- title: Lorem ipsum dolor sit amet
-  description: Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt
-  image_path: /assets/images/cards/5.png
+- title:
+  description: Ed Smith with his family
+  image_path: /assets/images/cards/5.webp
 
-- title: Lorem ipsum dolor sit amet
-  description: Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt
-  image_path: /assets/images/cards/1.png
+- title:
+  description: Ed Smith with his children.
+  image_path: /assets/images/cards/1.webp
 
-- title: Lorem ipsum dolor sit amet
-  description: Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt
-  image_path: /assets/images/cards/2.png
+- title:
+  description: Ed Smith with his son.
+  image_path: /assets/images/cards/2.webp
 
-- title: Lorem ipsum dolor sit amet
-  description: Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt
-  image_path: /assets/images/cards/3.png
+- title:
+  description: Ed Smith with is wife, Casey.
+  image_path: /assets/images/cards/3.webp
   easteregg: true
 
-- title: Lorem ipsum dolor sit amet
-  description: Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt
-  image_path: /assets/images/cards/4.png
+- title:
+  description: Ed Smith with his children.
+  image_path: /assets/images/cards/4.webp
 
-- title: Lorem ipsum dolor sit amet
-  description: Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt
-  image_path: /assets/images/cards/5.png
+- title:
+  description: Ed Smith with his family
+  image_path: /assets/images/cards/5.webp
