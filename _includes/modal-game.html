@@ -23,7 +23,7 @@
                     <div class="container">
                       <div class="d-flex gap-2">
                         <a href="#" class="btn btn-large btn-primary w-100 outbound" data-bs-toggle="modal" data-bs-target="#donateModal">
-                          <i class="fa-regular fa-credit-card"></i> Donate</a>
+                          {% include fa-credit-card.html %} Donate</a>
                       </div>
                       <p class="my-1 text-muted small text-center">Credit and debit cards accepted</p>
                     </div>
@@ -46,17 +46,17 @@
                       <!-- Required fields -->
                       <div class="row">
                         <div class="col-md-6 col-12 mb-3">
-                          <label for="fname" class="sr-only">First Name</label>
+                          <label for="fname" class="d-none">First Name</label>
                           <input type="text" class="form-control" id="fname" placeholder="First Name" name="fname" required="">
                         </div>
                         <div class="col-md-6 col-12 mb-3">
-                          <label for="lname" class="sr-only">Last Name</label>
+                          <label for="lname" class="d-none">Last Name</label>
                           <input type="text" class="form-control" id="lname" placeholder="Last Name" name="lname" required="">
                         </div>
                       </div>
                       <div class="row">
                         <div class="col-12 mb-3">
-                          <label for="email" class="sr-only"> Email</label>
+                          <label for="email" class="d-none"> Email</label>
                           <input type="email" class="form-control" id="email" placeholder="Email" name="email" required="">
                         </div>
                       </div>
@@ -92,7 +92,7 @@
                       <div class="container">
                         <div class="d-flex gap-2">
                           <a href="#" class="btn btn-large btn-primary w-100 outbound" data-bs-toggle="modal" data-bs-target="#donateModal">
-                            <i class="fa-regular fa-credit-card"></i> Donate</a>
+                            {% include fa-credit-card.html %} Donate</a>
                         </div>
                         <p class="my-1 text-muted small text-center">Credit and debit cards accepted</p>
                       </div>
