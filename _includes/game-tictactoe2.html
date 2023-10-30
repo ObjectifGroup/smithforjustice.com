@@ -1,0 +1,236 @@
+<style>
+    .cellz {
+        /* Custom properties for cell size and background image */
+        height: 100px;
+        background-repeat: no-repeat;
+        background-position: center;
+        background-size: contain;
+        /* Adjust 'contain' as needed to fit your images nicely within the cells */
+    }
+</style>
+
+<div class="container">
+    <div id="thinking-indicator" class="text-center my-3">
+        <div class="alert alert-primary" role="alert">Click a cell to start.</div>
+    </div>
+    <div class="row g-0">
+        <div class="col-4 border-5 border-end border-bottom border-primary cellz" id="0" onclick="makeMove(0)"></div>
+        <div class="col-4 border-5 border-end border-bottom border-primary cellz" id="1" onclick="makeMove(1)"></div>
+        <div class="col-4 border-5 border-bottom border-primary cellz" id="2" onclick="makeMove(2)"></div>
+    </div>
+    <div class="row g-0">
+        <div class="col-4 border-5 border-end border-bottom border-primary cellz" id="3" onclick="makeMove(3)"></div>
+        <div class="col-4 border-5 border-end border-bottom border-primary cellz" id="4" onclick="makeMove(4)"></div>
+        <div class="col-4 border-5 border-bottom border-primary cellz" id="5" onclick="makeMove(5)"></div>
+    </div>
+    <div class="row g-0">
+        <div class="col-4 border-5 border-end border-primary cellz" id="6" onclick="makeMove(6)"></div>
+        <div class="col-4 border-5 border-end border-primary cellz" id="7" onclick="makeMove(7)"></div>
+        <div class="col-4 border-5 cellz" id="8" onclick="makeMove(8)"></div>
+    </div>
+</div>
+
+<script>
+    var board = [
+        '',
+        '',
+        '',
+        '',
+        '',
+        '',
+        '',
+        '',
+        ''
+    ];
+    var currentPlayer = 'X'; // Human player is 'X', computer is 'O'
+
+    function makeMove(index) {
+        if (board[index] === '' && currentPlayer === 'X') {
+            board[index] = currentPlayer;
+            document
+                .getElementById(index.toString())
+                .style
+                .backgroundImage = 'url(' + currentPlayer.toLowerCase() + '.png)';
+
+            // Check for win or draw before the computer's turn
+            if (checkWin()) {
+                document
+                    .getElementById('thinking-indicator')
+                    .innerHTML = '<div class="alert alert-success" role="alert">' + currentPlayer + ' wins!</div>';
+                resetBoard();
+            } else if (!board.includes('')) {
+                document
+                    .getElementById('thinking-indicator')
+                    .innerHTML = '<div class="alert alert-secondary" role="alert">It\'s a draw!</div>';
+                resetBoard();
+            } else {
+                currentPlayer = 'O';
+                computerMove();
+            }
+        }
+    }
+
+    function computerMove() {
+        // Display an alert for the computer's turn
+        document
+            .getElementById('thinking-indicator')
+            .innerHTML = '<div class="alert alert-warning" role="alert">Computer is thinking...</div>';
+
+        setTimeout(function () {
+            var bestScore = -Infinity;
+            var move;
+            for (var i = 0; i < board.length; i++) {
+                if (board[i] === '') {
+                    board[i] = 'O';
+                    var score = minimax(board, 0, false);
+                    board[i] = '';
+                    if (score > bestScore) {
+                        bestScore = score;
+                        move = i;
+                    }
+                }
+            }
+            board[move] = 'O';
+            document
+                .getElementById(move.toString())
+                .style
+                .backgroundImage = 'url(o.png)';
+
+            var win = checkWin();
+
+            // Delay the win alert and board reset by a few seconds
+            if (win) {
+                setTimeout(function () {
+                    document
+                        .getElementById('thinking-indicator')
+                        .innerHTML = '<div class="alert alert-danger" role="alert">You lose! Try again.</div>';
+                    // Add a delay before resetting the board
+                    setTimeout(resetBoard, 2000);
+                }, 500); // Delay to let the UI update with the computer's winning move
+            } else {
+                updateTurnAlert();
+            }
+        }, 2000); // 2-second delay to simulate computer thinking
+    }
+
+    function updateTurnAlert() {
+        if (!board.includes('')) {
+            document
+                .getElementById('thinking-indicator')
+                .innerHTML = '<div class="alert alert-danger" role="alert">It\'s a draw!</div>';
+            setTimeout(resetBoard, 2000);
+        } else {
+            currentPlayer = 'X';
+            document
+                .getElementById('thinking-indicator')
+                .innerHTML = '<div class="alert alert-primary" role="alert">Your turn!</div>';
+        }
+    }
+
+    function minimax(board, depth, isMaximizing) {
+        var scores = {
+            'X': -1,
+            'O': 1,
+            'draw': 0
+        };
+
+        var result = checkWinner();
+        if (result !== null) {
+            return scores[result];
+        }
+
+        if (isMaximizing) {
+            var bestScore = -Infinity;
+            for (var i = 0; i < 9; i++) {
+                if (board[i] === '') {
+                    board[i] = 'O';
+                    var score = minimax(board, depth + 1, false);
+                    board[i] = '';
+                    bestScore = Math.max(score, bestScore);
+                }
+            }
+            return bestScore;
+        } else {
+            var bestScore = Infinity;
+            for (var i = 0; i < 9; i++) {
+                if (board[i] === '') {
+                    board[i] = 'X';
+                    var score = minimax(board, depth + 1, true);
+                    board[i] = '';
+                    bestScore = Math.min(score, bestScore);
+                }
+            }
+            return bestScore;
+        }
+    }
+
+    function checkWinner() {
+        var winPatterns = [
+            [
+                0, 1, 2
+            ],
+            [
+                3, 4, 5
+            ],
+            [
+                6, 7, 8
+            ],
+            [
+                0, 3, 6
+            ],
+            [
+                1, 4, 7
+            ],
+            [
+                2, 5, 8
+            ],
+            [
+                0, 4, 8
+            ],
+            [
+                2, 4, 6
+            ]
+        ];
+
+        for (var pattern of winPatterns) {
+            if (board[pattern[0]] !== '' && board[pattern[0]] === board[pattern[1]] && board[pattern[1]] === board[pattern[2]]) {
+                return board[pattern[0]];
+            }
+        }
+
+        return board.includes('')
+            ? null
+            : 'draw';
+    }
+
+    function checkWin() {
+        var winner = checkWinner();
+        return winner !== null && winner !== 'draw';
+    }
+
+    function resetBoard() {
+        board = [
+            '',
+            '',
+            '',
+            '',
+            '',
+            '',
+            '',
+            '',
+            ''
+        ];
+        for (var i = 0; i < board.length; i++) {
+            document
+                .getElementById(i.toString())
+                .style
+                .backgroundImage = '';
+        }
+        currentPlayer = 'X'; // Reset to human player
+        // Clear any alerts
+        document
+            .getElementById('thinking-indicator')
+            .innerHTML = '<div class="alert alert-primary" role="alert">Click a cell to start.</div>';
+        // You can add additional logic here if you need to reset other elements
+    }
+</script>
