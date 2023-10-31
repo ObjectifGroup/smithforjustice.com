@@ -20,8 +20,8 @@
                   <p>To play the game, please visit this secret page from a device with a larger screen, such as a laptop or desktop computer.</p>
                   <p>In the meantime, please consider making a donation to the campaign by clicking the button below.</p>
                   -->
-                  <!-- bottom bar -->
-                  <!--
+                <!-- bottom bar -->
+                <!--
                   <div class="bg-white py-2">
                     <div class="container">
                       <div class="d-flex gap-2">
@@ -50,18 +50,24 @@
                       <!-- Required fields -->
                       <div class="row">
                         <div class="col-md-6 col-12 mb-3">
-                          <label for="fname" class="d-none">First Name</label>
-                          <input type="text" class="form-control" id="fname" placeholder="First Name" name="fname" required="">
+                          <div class="form-floating mb-3">
+                            <input type="text" class="form-control" id="fname" placeholder="First Name" name="fname" required="">
+                            <label for="fname">First Name</label>
+                          </div>
                         </div>
                         <div class="col-md-6 col-12 mb-3">
-                          <label for="lname" class="d-none">Last Name</label>
-                          <input type="text" class="form-control" id="lname" placeholder="Last Name" name="lname" required="">
+                          <div class="form-floating mb-3">
+                            <input type="text" class="form-control" id="lname" placeholder="Last Name" name="lname" required="">
+                            <label for="lname">Last Name</label>
+                          </div>
                         </div>
                       </div>
                       <div class="row">
                         <div class="col-12 mb-3">
-                          <label for="email" class="d-none"> Email</label>
-                          <input type="email" class="form-control" id="email" placeholder="Email" name="email" required="">
+                          <div class="form-floating mb-3">
+                            <input type="email" class="form-control" id="email" placeholder="Email" name="email" required="">
+                            <label for="email"> Email</label>
+                          </div>
                         </div>
                       </div>
 
@@ -70,14 +76,32 @@
 
                       <!-- Add a message to the campaign  -->
                       <div class="mb-3 col-12">
-                        <label class="form-label" for="message">Send a message to the campaign.</label>
-                        <textarea class="form-control" id="message" rows="3" name="message"></textarea>
+                        <div class="form-floating mb-3">
+                          <textarea class="form-control" placeholder="Send a message to the campaign." id="message" rows="3" name="message" style="height: 100px"></textarea>
+                          <label class="form-label" for="message">Send a message to the campaign.</label>
+                        </div>
+                      </div>
+
+                      <!-- Math Captcha -->
+                      <div class="row">
+                        <div class="col-12 mb-3">
+                          <div class="input-group has-validation">
+                            <span class="input-group-text" id="math-captcha"></span>
+                            <input type="text" class="form-control" id="captcha-solution" placeholder="Solve the equation" required>
+                            <div class="invalid-feedback">
+                              Please solve the math problem correctly.
+                            </div>
+                          </div>
+                        </div>
                       </div>
 
                       <!-- Submit -->
                       <div class="col-12">
                         <div class="d-grid">
-                          <button type="submit" class="btn btn-primary">Send Message and Play Game</button>
+                          <button type="submit" id="submit-btn" class="btn btn-primary">
+                            Send Message and Play Game
+                            <span id="spinner" class="spinner-border spinner-border-sm d-none" role="status" aria-hidden="true"></span>
+                          </button>
                         </div>
                       </div>
 
@@ -114,37 +138,111 @@
 </div>
 
 <script>
+  function generateMathCaptcha() {
+    let a = Math.floor(Math.random() * 10) + 1;
+    let b = Math.floor(Math.random() * 10) + 1;
+    let operation = '+';
+    let solution = a + b;
+
+    // Ensure a is always greater than b for subtraction to avoid negative results
+    if (a - b <= 0) {
+      // Swap values if a is less than or equal to b
+      [a, b] = [b, a];
+    }
+    // Randomly decide if it should be a subtraction operation, but only if it won't result in a negative number
+    if (Math.random() > 0.5 && a > b) {
+      operation = '-';
+      solution = a - b;
+    }
+
+    document
+      .getElementById('math-captcha')
+      .textContent = `Solve: ${a} ${operation} ${b} = `;
+    return solution;
+  }
+
   window.addEventListener("load", function () {
+
+    // Function to generate and display a new math captcha
+    function generateMathCaptcha() {
+      const num1 = Math.floor(Math.random() * 10) + 1; // numbers 1-10
+      const num2 = Math.floor(Math.random() * 10) + 1; // numbers 1-10
+      const sum = num1 + num2;
+
+      const captchaText = document.getElementById('math-captcha');
+      captchaText.textContent = `${num1} + ${num2} = ?`;
+
+      return sum;
+    }
+
+    // Store the correct answer for validation
+    let correctAnswer = generateMathCaptcha();
+
     const form = document.getElementById('gameModalForm');
+    const captchaSolution = document.getElementById('captcha-solution');
+    const submitBtn = document.getElementById('submit-btn');
+
     form.addEventListener("submit", function (e) {
       e.preventDefault();
-      const data = new FormData(form);
-      const action = e.target.action;
-      fetch(action, {
-        method: 'POST',
-        body: data
-      })
-        .then(response => response.json())
-        .then(data => {
-          if (data.result === "success") {
-            // Hide contact form and show game
-            document
-              .getElementById('contact-form')
+
+      // Validate CAPTCHA
+      if (parseInt(captchaSolution.value) !== correctAnswer) {
+        captchaSolution
+          .classList
+          .add('is-invalid');
+      } else {
+        captchaSolution
+          .classList
+          .remove('is-invalid');
+
+        // Show spinner inside the button
+        const spinner = document.querySelector('#submit-btn #spinner');
+        spinner
+          .classList
+          .remove('d-none');
+
+        // Perform the form submission
+        const data = new FormData(form);
+        const action = e.target.action;
+        fetch(action, {
+          method: 'POST',
+          body: data
+        })
+          .then(response => response.json())
+          .then(data => {
+            // Hide spinner
+            spinner
               .classList
               .add('d-none');
-            document
-              .getElementById('game')
+            if (data.result === "success") {
+              // Hide contact form and show game
+              document
+                .getElementById('contact-form')
+                .classList
+                .add('d-none');
+              document
+                .getElementById('game')
+                .classList
+                .remove('d-none');
+            } else {
+              // Optionally handle server-side error (e.g., show an error message)
+              console.error('Server-side error:', data);
+            }
+          })
+          .catch(error => {
+            // Hide spinner
+            spinner
               .classList
-              .remove('d-none');
-          } else {
-            // Optionally handle server-side error (e.g., show an error message)
-            console.error('Server-side error:', data);
-          }
-        })
-        .catch(error => {
-          // Handle network error (e.g., show an error message)
-          console.error('Network error:', error);
-        });
+              .add('d-none');
+            // Handle network error (e.g., show an error message)
+            console.error('Network error:', error);
+          });
+      }
+    });
+
+    // Optional: Regenerate the captcha when the input field is clicked
+    captchaSolution.addEventListener("click", function () {
+      correctAnswer = generateMathCaptcha();
     });
   });
 </script>
