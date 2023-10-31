@@ -52,17 +52,12 @@
                 .style
                 .backgroundImage = 'url(' + currentPlayer.toLowerCase() + '.png)';
 
-            // Check for win or draw before the computer's turn
             if (checkWin()) {
-                document
-                    .getElementById('thinking-indicator')
-                    .innerHTML = '<div class="alert alert-success" role="alert">' + currentPlayer + ' wins!</div>';
-                resetBoard();
-            } else if (!board.includes('')) {
-                document
-                    .getElementById('thinking-indicator')
-                    .innerHTML = '<div class="alert alert-secondary" role="alert">It\'s a draw!</div>';
-                resetBoard();
+                showAlert('You win!', 'success');
+                setTimeout(resetBoard, 2000);
+            } else if (checkDraw()) {
+                showAlert('It\'s a draw!', 'danger');
+                setTimeout(resetBoard, 2000);
             } else {
                 currentPlayer = 'O';
                 computerMove();
@@ -71,66 +66,60 @@
     }
 
     function computerMove() {
-        // Display an alert for the computer's turn
-        document
-            .getElementById('thinking-indicator')
-            .innerHTML = '<div class="alert alert-warning" role="alert">Computer is thinking...</div>';
-
+        showAlert('Computer is thinking...', 'warning');
         setTimeout(function () {
-            var bestScore = -Infinity;
-            var move;
-            for (var i = 0; i < board.length; i++) {
-                if (board[i] === '') {
-                    board[i] = 'O';
-                    var score = minimax(board, 0, false);
-                    board[i] = '';
-                    if (score > bestScore) {
-                        bestScore = score;
-                        move = i;
-                    }
-                }
-            }
+            var move = findBestMove();
             board[move] = 'O';
             document
                 .getElementById(move.toString())
                 .style
                 .backgroundImage = 'url(o.png)';
-
-            var win = checkWin();
-
-            // Delay the win alert and board reset by a few seconds
-            if (win) {
-                setTimeout(function () {
-                    document
-                        .getElementById('thinking-indicator')
-                        .innerHTML = '<div class="alert alert-danger" role="alert">You lose! Try again.</div>';
-                    // Add a delay before resetting the board
-                    setTimeout(resetBoard, 2000);
-                }, 500); // Delay to let the UI update with the computer's winning move
+            if (checkWin()) {
+                showAlert('You lose! Try again.', 'danger');
+                setTimeout(resetBoard, 2000);
+            } else if (checkDraw()) {
+                showAlert('It\'s a draw!', 'danger');
+                setTimeout(resetBoard, 2000);
             } else {
-                updateTurnAlert();
+                currentPlayer = 'X';
+                showAlert('Your turn!', 'primary');
             }
-        }, 2000); // 2-second delay to simulate computer thinking
+        }, 2000);
     }
 
-    function updateTurnAlert() {
-        if (!board.includes('')) {
-            document
-                .getElementById('thinking-indicator')
-                .innerHTML = '<div class="alert alert-danger" role="alert">It\'s a draw!</div>';
-            setTimeout(resetBoard, 2000);
-        } else {
-            currentPlayer = 'X';
-            document
-                .getElementById('thinking-indicator')
-                .innerHTML = '<div class="alert alert-primary" role="alert">Your turn!</div>';
+    function findBestMove() {
+        // Introduce a chance for the computer to not play optimally.
+        // For instance, 30% of the time, the computer might make a random move.
+        if (Math.random() < 0.3) { // 30% chance to make a random move.
+            var possibleMoves = board
+                .map(
+                    (cell, index) => cell === ''
+                    ? index
+                    : null)
+                .filter(index => index !== null);
+            return possibleMoves[Math.floor(Math.random() * possibleMoves.length)];
         }
+
+        var bestScore = -Infinity;
+        var move;
+        for (var i = 0; i < board.length; i++) {
+            if (board[i] === '') {
+                board[i] = 'O';
+                var score = minimax(board, 0, false);
+                board[i] = '';
+                if (score > bestScore) {
+                    bestScore = score;
+                    move = i;
+                }
+            }
+        }
+        return move;
     }
 
     function minimax(board, depth, isMaximizing) {
         var scores = {
-            'X': -1,
-            'O': 1,
+            'X': -10,
+            'O': 10,
             'draw': 0
         };
 
@@ -141,7 +130,7 @@
 
         if (isMaximizing) {
             var bestScore = -Infinity;
-            for (var i = 0; i < 9; i++) {
+            for (var i = 0; i < board.length; i++) {
                 if (board[i] === '') {
                     board[i] = 'O';
                     var score = minimax(board, depth + 1, false);
@@ -152,7 +141,7 @@
             return bestScore;
         } else {
             var bestScore = Infinity;
-            for (var i = 0; i < 9; i++) {
+            for (var i = 0; i < board.length; i++) {
                 if (board[i] === '') {
                     board[i] = 'X';
                     var score = minimax(board, depth + 1, true);
@@ -193,44 +182,40 @@
         ];
 
         for (var pattern of winPatterns) {
-            if (board[pattern[0]] !== '' && board[pattern[0]] === board[pattern[1]] && board[pattern[1]] === board[pattern[2]]) {
+            if (board[pattern[0]] && board[pattern[0]] === board[pattern[1]] && board[pattern[1]] === board[pattern[2]]) {
                 return board[pattern[0]];
             }
         }
 
-        return board.includes('')
-            ? null
-            : 'draw';
+        if (board.every(cell => cell)) {
+            return 'draw';
+        }
+        return null;
     }
 
     function checkWin() {
-        var winner = checkWinner();
-        return winner !== null && winner !== 'draw';
+        return checkWinner() && checkWinner() !== 'draw';
+    }
+
+    function checkDraw() {
+        return checkWinner() === 'draw';
+    }
+
+    function showAlert(message, type) {
+        document
+            .getElementById('thinking-indicator')
+            .innerHTML = '<div class="alert alert-' + type + '" role="alert">' + message + '</div>';
     }
 
     function resetBoard() {
-        board = [
-            '',
-            '',
-            '',
-            '',
-            '',
-            '',
-            '',
-            '',
-            ''
-        ];
+        board.fill('');
         for (var i = 0; i < board.length; i++) {
             document
                 .getElementById(i.toString())
                 .style
                 .backgroundImage = '';
         }
-        currentPlayer = 'X'; // Reset to human player
-        // Clear any alerts
-        document
-            .getElementById('thinking-indicator')
-            .innerHTML = '<div class="alert alert-primary" role="alert">Click a cell to start.</div>';
-        // You can add additional logic here if you need to reset other elements
+        currentPlayer = 'X';
+        showAlert('Click a cell to start.', 'primary');
     }
 </script>
